@@ -1,6 +1,6 @@
 import { hopeTheme } from "vuepress-theme-hope";
-import { navbarConfig } from "./navbar";
-import { sidebarConfig } from "./sidebar";
+import { navbarConfig } from "./utils/navbar";
+import { sidebarConfig } from "./utils/sidebar";
 
 export default hopeTheme({
   hostname: "https://haijunit.top",
@@ -14,7 +14,7 @@ export default hopeTheme({
   docsDir: "docs/",
 
   // sidebar
-  sidebar: "structure",
+  sidebar: sidebarConfig,
   // navbar
   navbar: navbarConfig,
   //导航栏布局
