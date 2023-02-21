@@ -1,18 +1,13 @@
 import { defineUserConfig } from "vuepress";
-import { hopeTheme } from "vuepress-theme-hope";
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
-import { commentPlugin } from "vuepress-plugin-comment2";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
 import theme from "./theme";
 
 export default defineUserConfig({
-  lang: "zh-CN",
-  title: "Weiser",
-  description: "vuepress-theme-hope 的演示",
-
-  //如果是使用gh-pages布署，base应该用仓库名
-  //base: "/personal-site/",
   base: "/",
+  lang: "zh-CN",
+  title: "学习笔记",
+  description: "积累点滴，汇聚成溪。",
   head: [
     [
       "link",
@@ -22,23 +17,16 @@ export default defineUserConfig({
       },
     ],
   ],
-
+  //是否开启页面预拉取，如果服务器宽带足够，可改为 true，会提升其他页面加载速度
+  shouldPrefetch: false,
   theme,
 
   plugins: [
-    // 本地搜索，删除上方 docsearchPlugin 区块后生效
+    // 本地搜索
     searchProPlugin({
       // 索引全部内容
       indexContent: true,
     }),
-    commentPlugin({
-      provider: "Giscus",
-      repo: "xwzbupt/personal-site-comment",
-      repoId: "R_kgDOHdLpkQ",
-      category: "Announcements",
-      categoryId: "DIC_kwDOHdLpkc4CPfmK",
-    }),
-
     mdEnhancePlugin({
       // 启用自定义容器
       align: true,
