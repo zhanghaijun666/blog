@@ -1,6 +1,6 @@
 import { hopeTheme } from "vuepress-theme-hope";
-import { navbarConfig } from "./utils/navbar";
-import { sidebarConfig } from "./utils/sidebar";
+import { navbarConfig } from "./navbar";
+import { sidebarConfig } from "./sidebar";
 
 export default hopeTheme({
   hostname: "https://haijunit.top",

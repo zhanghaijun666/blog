@@ -1,22 +1,16 @@
 import { defineUserConfig } from "vuepress";
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
-import theme from "./theme";
+import theme from "./config/theme";
+import head from "./config/head";
 
 export default defineUserConfig({
   base: "/",
+  dest: "dist",
   lang: "zh-CN",
   title: "学习笔记",
   description: "积累点滴，汇聚成溪。",
-  head: [
-    [
-      "link",
-      {
-        rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css",
-      },
-    ],
-  ],
+  head: head,
   //是否开启页面预拉取，如果服务器宽带足够，可改为 true，会提升其他页面加载速度
   shouldPrefetch: false,
   theme,
