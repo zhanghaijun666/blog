@@ -14,6 +14,6 @@ function getSidebar(): any {
       }
     })
   });
+  return sidebarObj;
 }
-
 export const sidebarConfig = sidebar(getSidebar())
