@@ -3,8 +3,9 @@ import path from "path"
 
 const REG_DIR_NAME = new RegExp(/^(?<order>\d+)\.(?<name>[^.]+)(\.(?<prefix>[^.]+))?/);
 const REG_FILE_NAME = new RegExp(/^(?<order>\d+)\.(?<name>[^.]+)(\.(?<prefix>[^.]+))?\.md$/);
+const docsRoot = path.join(__dirname, '..', '..', '..', 'docs')
 
-export const readFileList = function (basePath: string, isChild: boolean = false) {
+export const readFileList = function (basePath: string = docsRoot, isChild: boolean = false): Array<any> {
   const files = fs.readdirSync(basePath);
   return files.map((element) => {
     if (element == "00.目录") {
@@ -17,18 +18,20 @@ export const readFileList = function (basePath: string, isChild: boolean = false
       return [{
         fileName: element,
         path: filePath,
+        order: group.order,
         text: group.name
       }];
     }
     if (stat.isDirectory() && REG_DIR_NAME.test(element)) {
       const group: any = ((element || "").match(REG_DIR_NAME) || {}).groups;
-      const result = {
+      const fileInfo = {
         fileName: element,
         path: filePath,
+        order: group.order,
         text: group.name
       };
-      return isChild ? [result, ...readFileList(filePath)] : [result]
+      return isChild ? [fileInfo, ...readFileList(filePath)] : [fileInfo]
     }
     return []
-  }).flat(Infinity)
+  }).flat(Infinity).sort((a, b) => a.order - b.order)
 }

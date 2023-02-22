@@ -1,3 +1,14 @@
+## ✨ 初衷
+曾经，我把知识记录在 Notion、Obsidian、飞书等知识管理软件上，导致笔记散落各处，使用起来很麻烦，也难以对外分享。
+
+更重要的是，笔记里的知识并不属于你，只有经过消化、应用，才会成为自己的知识。
+
+因此，我基于 VuePress 和 vuepress-theme-hope 建立了 LearnData，将所有笔记与文章重新整合，聚合到同一页面形成知识库，方便自己使用和分享。
+
+博客项目采用 vuePress2.X 版本进行构建，以本地主题继承 vuepress2.X 默认主题方式进行开发。集成了部分插件，丰富首页功能。围绕 markdown 语法进行文档编写，记录日常工作中的文档资料，最终项目以 html 静态文件形式进行部署。
+
+🧱 笔记结构
+
 ## 技术栈 📚
 
 - [vuepress-theme-vdoing](https://xugaoyi.github.io/vuepress-theme-vdoing-doc/)
