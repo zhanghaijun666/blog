@@ -52,7 +52,6 @@ book.pdf
 # ------ other ------
 .DS_Store
 *.lock
-.vscode
 **/dist
 /docs/@pages/
 docs/.vuepress/.cache/
