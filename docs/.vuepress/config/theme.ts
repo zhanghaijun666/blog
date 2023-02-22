@@ -43,13 +43,13 @@ export default hopeTheme({
   },
   blog: {
     name: "研发中心",
-    intro: "/intro.html",
-    avatar: "/640.png",
+    // intro: "/intro.html",
+    avatar: "/logo.png",
     roundAvatar: true,
     description: "汇聚点滴，凝聚成溪",
     medias: {
-      Email: "xwze@bupt.cn",
-      GitHub: "https://github.com/xwzbupt",
+      Email: "mailto:zhanghaijun_java@163.com",
+      GitHub: "https://github.com/zhanghaijun666",
     },
     articleInfo: ["Date", "Category", "Tag", "ReadingTime", "PageView"],
   },

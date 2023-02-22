@@ -3,9 +3,9 @@ home: true
 layout: BlogHome
 icon: home
 title: 博客主页
-# heroImage: /640.png
+heroImage: /assets/img/panda-waving.png
 heroText: 知识库
-bgImage: /mountain.jpg
+bgImage: /assets/img/bg.jpeg
 heroFullScreen: false
 tagline: 记录，成为更好的自己
 projects:
