@@ -10,11 +10,11 @@ function getNavbar(): Array<any> {
       children: readFileList(level1.path).map((level2: any) => {
         return {
           text: level2.text,
-          icon: "",
+          icon: "home",
           link: level2.fileName + "/",
         }
       })
     }
   })
 }
-export const navbarConfig = navbar(["/", "/home", ...getNavbar()])
+export const navbarConfig = navbar(["/", "/blog", ...getNavbar()])
