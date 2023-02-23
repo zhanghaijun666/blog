@@ -11,20 +11,17 @@ const PREFIX = '/pages/'
 const docsRoot = path.join(__dirname, '..', 'docs')
 
 /** 给.md文件设置frontmatter(标题、日期、永久链接等数据) */
-exports.setFrontmatter = function (sourceDir = docsRoot) {
+exports.setFrontmatter = function (sourceDir = docsRoot, forceChange = false) {
   const files = readFileList(sourceDir) // 读取所有md文件数据
 
   files.filter(item => item.isFile).forEach(file => {
     let dataStr = fs.readFileSync(file.filePath, 'utf8');
     // fileMatterObj => {content:'剔除frontmatter后的文件内容字符串', data:{<frontmatter对象>}, ...}
     const { content, data: matterObject = {} } = matter(dataStr, {});
-    let hasChange = false;
+    let hasChange = !!forceChange;
 
     // 标题 title
-    if (!matterObject.hasOwnProperty('title')) {
-      matterObject.title = file.name;
-      hasChange = true;
-    }
+    matterObject.title = file.name;
     // 日期
     if (!matterObject.hasOwnProperty('date')) {
       matterObject.date = dateFormat(getBirthtime(fs.statSync(file.filePath)));
@@ -36,9 +33,7 @@ exports.setFrontmatter = function (sourceDir = docsRoot) {
     //   hasChange = true;
     // }
     // 分类
-    if (!matterObject.hasOwnProperty('category')) {
-      matterObject.category = getCategories(file, '随笔')
-    }
+    matterObject.category = getCategories(file, '随笔')
     // 标签
     const { tags, tag } = matterObject;
     delete matterObject.tag
