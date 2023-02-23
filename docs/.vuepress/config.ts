@@ -49,7 +49,7 @@ export default defineUserConfig({
       gfm: true,
       imgSize: true,
       include: true,
-      lazyLoad: true,
+      imgLazyload: true,
       mark: true,
       mermaid: true,
       playground: {
