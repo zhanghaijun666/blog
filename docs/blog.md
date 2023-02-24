@@ -16,7 +16,7 @@ actions:
 
 features:
   - title: 学习笔记
-    icon: https://haijunit.top/images/avatar.png
+    icon: https://haijunit.top/logo.png
     details: 记录成为更好的自己
     link: https://haijunit.top
   - title: pdai
