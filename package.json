@@ -4,7 +4,10 @@
   "description": "A project of vuepress-theme-hope",
   "license": "MIT",
   "homepage": "https://haijunit.top",
-  "keywords": ["vue", "vuepress"],
+  "keywords": [
+    "vue",
+    "vuepress"
+  ],
   "author": {
     "name": "zhanghaijun",
     "url": "https://haijunit.top",
@@ -25,16 +28,16 @@
   },
   "devDependencies": {
     "@vuepress/client": "2.0.0-beta.60",
-    "@vuepress/utils": "^2.0.0-beta.60",
-    "pnpm": "^7.26.0",
-    "vue": "^3.2.45",
+    "@vuepress/utils": "2.0.0-beta.50-pre.1",
+    "pnpm": "^7.28.0",
+    "vue": "^3.2.47",
     "vuepress": "2.0.0-beta.60",
-    "vuepress-plugin-comment2": "v2.0.0-beta.178",
-    "vuepress-plugin-md-enhance": "v2.0.0-beta.178",
+    "vuepress-plugin-comment2": "2.0.0-beta.178",
+    "vuepress-plugin-md-enhance": "2.0.0-beta.178",
     "vuepress-plugin-search-pro": "2.0.0-beta.178",
-    "vuepress-theme-hope": "v2.0.0-beta.178"
+    "vuepress-theme-hope": "2.0.0-beta.178"
   },
   "dependencies": {
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   }
 }
