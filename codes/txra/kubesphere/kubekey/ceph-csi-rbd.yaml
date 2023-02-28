@@ -1,0 +1,4 @@
+csiConfig:
+  - clusterID: "ec0edd6c-2239-42e0-b303-3ca1cfb42668"
+    monitors:
+      - "192.168.10.82:6789"

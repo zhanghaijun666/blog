@@ -1,0 +1,30 @@
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+init_connect='SET collation_connection = utf8_unicode_ci'
+init_connect='SET NAMES utf8'
+character-set-server=utf8
+collation-server=utf8_unicode_ci
+skip-character-set-client-handshake
+skip-name-resolve
+
+server_id=1
+log-bin=mysql-bin
+#是否只读  0=false   1=true
+read-only=0
+
+#需要同步的数据库
+binlog-do-db=db_cloud_system
+binlog-do-db=db_cloud_nacos
+binlog-do-db=db_cloud_job
+binlog-do-db=db_cloud_seata
+
+#排除同步的数据库
+replicate-ignore-db=mysql
+replicate-ignore-db=sys
+replicate-ignore-db=performance_schema
+replicate-ignore-db=information_schema

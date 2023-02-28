@@ -1,0 +1,25 @@
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+# [必须]服务器唯一ID，默认是1，一般取IP最后一段  
+server-id=2
+## 开启二进制日志功能，以备Slave作为其它Slave的Master时使用
+log-bin=mysql-bin
+log-bin-index=mysql-bin.index
+#是否只读  0=false   1=true
+read-only=1
+# 跳过所有的错误，继续执行复制操作
+slave-skip-errors = all
+
+# 需要同步的表数据，不指定表示所有库的同步（除了ignore忽略的库）。
+#replicate-do-db=db_cloud_nacos
+
+# 排除同步的表数据
+replicate-ignore-db=mysql
+replicate-ignore-db=sys
+replicate-ignore-db=performance_schema
+replicate-ignore-db=information_schema

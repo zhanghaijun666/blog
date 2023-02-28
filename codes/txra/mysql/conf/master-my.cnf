@@ -1,0 +1,26 @@
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+# [必须]服务器唯一ID，默认是1，一般取IP最后一段
+server_id=1
+# [必须]启用二进制日志
+log-bin=mysql-bin
+# 是否只读  0=false   1=true
+read-only=0
+# 确保binlog日志写入后与硬盘同步
+sync_binlog = 1
+# 跳过所有的错误，继续执行复制操作
+slave-skip-errors = all
+
+# 需要同步的数据库 不指定表示所有库的同步（除了ignore忽略的库）。
+#binlog-do-db=db_cloud_system
+
+# 排除同步的数据库
+binlog-ignore-db=mysql
+binlog-ignore-db=sys
+binlog-ignore-db=performance_schema
+binlog-ignore-db=information_schema
