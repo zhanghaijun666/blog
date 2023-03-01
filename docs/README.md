@@ -5,7 +5,7 @@ icon: home
 title: 博客主页
 heroImage: /assets/img/panda-waving.png
 heroText: 知识库
-bgImage: /assets/img/contact-bg.jpg
+bgImage: /assets/img/background-1920-1280.jpg
 heroFullScreen: false
 tagline: 记录，成为更好的自己
 projects:
