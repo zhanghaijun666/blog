@@ -1,4 +1,5 @@
 ## 构建编译基础镜像
+
 ```bash
 if [[ -n $(docker images | grep bedrock/bedrock-build 2>/dev/null) ]];then
   docker images | grep bedrock/bedrock-build | awk '{print $3}' | xargs docker rmi
