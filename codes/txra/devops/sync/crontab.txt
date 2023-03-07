@@ -1,0 +1,13 @@
+00 01 * * * /backup/scripts/sync/sync_api_confluence.sh
+00 01 * * * /backup/scripts/sync/sync_api_torna.sh
+00 01 * * * /backup/scripts/sync/sync_ci_data.sh
+00 01 * * * /backup/scripts/sync/sync_ci_jenkins.sh
+00 01 * * * /backup/scripts/sync/sync_docker_harbor.sh
+00 01 * * * /backup/scripts/sync/sync_docker_repository.sh
+00 01 * * * /backup/scripts/sync/sync_git_gitlab.sh
+00 01 * * * /backup/scripts/sync/sync_jira.sh
+00 01 * * * /backup/scripts/sync/sync_repo_data.sh
+00 01 * * * /backup/scripts/sync/sync_repo_nexus.sh
+00 01 * * * /backup/scripts/sync/sync_sso_cas.sh
+00 01 * * * /backup/scripts/sync/sync_sso_dnsmasq.sh
+00 01 * * * /backup/scripts/sync/sync_sso_openldap.sh

@@ -1,0 +1,13 @@
+00 12 * * 7 /backup/scripts/backup/backup_api_confluence.sh
+00 12 * * 7 /backup/scripts/backup/backup_api_torna.sh
+00 12 * * 7 /backup/scripts/backup/backup_ci_data.sh
+00 12 * * 7 /backup/scripts/backup/backup_ci_jenkins.sh
+00 12 * * 7 /backup/scripts/backup/backup_docker_harbor.sh
+00 12 * * 7 /backup/scripts/backup/backup_docker_repository.sh
+00 12 * * 7 /backup/scripts/backup/backup_git_gitlab.sh
+00 12 * * 7 /backup/scripts/backup/backup_jira.sh
+00 12 * * 7 /backup/scripts/backup/backup_repo_data.sh
+00 12 * * 7 /backup/scripts/backup/backup_repo_nexus.sh
+00 12 * * 7 /backup/scripts/backup/backup_sso_cas.sh
+00 12 * * 7 /backup/scripts/backup/backup_sso_dnsmasq.sh
+00 12 * * 7 /backup/scripts/backup/backup_sso_openldap.sh
