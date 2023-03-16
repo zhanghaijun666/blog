@@ -5,6 +5,10 @@
   "editor.formatOnType": true,
   "editor.formatOnSave": true,
   "editor.lineHeight": 23,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
   "files.encoding": "utf8",
   "files.eol": "\n",
   "files.trimFinalNewlines": true,

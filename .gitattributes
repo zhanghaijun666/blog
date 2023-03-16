@@ -75,3 +75,8 @@
 *.xls binary
 *.xlsx binary
 *.xmind binary
+
+# Linguist language overrides
+*.js linguist-language=JavaScript
+*.jsm linguist-language=JavaScript
+*.inc linguist-language=XML
