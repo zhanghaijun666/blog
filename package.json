@@ -1,13 +1,10 @@
 {
-  "name": "weiser",
-  "version": "v2.0.0-beta.178",
-  "description": "A project of vuepress-theme-hope",
+  "name": "blog-docs",
+  "version": "v2.0.0",
+  "description": "my blog",
   "license": "MIT",
   "homepage": "https://haijunit.top",
-  "keywords": [
-    "vue",
-    "vuepress"
-  ],
+  "keywords": ["vue", "vuepress", "haijunit"],
   "author": {
     "name": "zhanghaijun",
     "url": "https://haijunit.top",
@@ -29,6 +26,7 @@
   "devDependencies": {
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/utils": "2.0.0-beta.50-pre.1",
+    "json2yaml": "^1.1.0",
     "pnpm": "^7.29.1",
     "vue": "^3.2.47",
     "vuepress": "2.0.0-beta.60",
