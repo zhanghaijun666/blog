@@ -2,7 +2,7 @@ import { navbar } from "vuepress-theme-hope";
 import { readFileList } from "./utils"
 
 function getNavbar(): Array<any> {
-  return readFileList("./docs/").filter((item: any) => ['10.随笔记录', '20.算法和设计', '40.项目管理', '90.实战项目'].indexOf(item.fileName) == -1).map((level1: any) => {
+  return readFileList("./docs/").filter((item: any) => ['10.随笔记录', '20.算法和设计', '40.项目管理', '90.实战项目', '101.天信瑞安'].indexOf(item.fileName) == -1).map((level1: any) => {
     return {
       text: level1.text,
       icon: "",
