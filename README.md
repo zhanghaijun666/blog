@@ -1,4 +1,5 @@
 ## ✨ 初衷
+
 曾经，我把知识记录在 Notion、Obsidian、飞书等知识管理软件上，导致笔记散落各处，使用起来很麻烦，也难以对外分享。
 
 更重要的是，笔记里的知识并不属于你，只有经过消化、应用，才会成为自己的知识。
@@ -16,6 +17,7 @@
 - [emoji 大全](https://www.emojidaquan.com/)
 - [Emojipedia](https://emojipedia.org/)
 - [emojiall](https://www.emojiall.com/zh-hans)
+- [APlayer](https://aplayer.js.org/)
 
 ## 收藏 🎉
 
@@ -32,33 +34,32 @@
 
 ## 优秀指南
 
-- https://github.com/yangpeng14/DevOps
-- https://gitee.com/AiShiYuShiJiePingXing/lovebetterworld
-- https://github.com/lovebetterworld/blog-vuepress
+- <https://github.com/yangpeng14/DevOps>
+- <https://gitee.com/AiShiYuShiJiePingXing/lovebetterworld>
+- <https://github.com/lovebetterworld/blog-vuepress>
 - <https://github.com/MonoLogueChi/blog.xxwhite.com>
-
 
 ## 插件推荐
 
 ### vuepress
 
-- [vuepress-plugin-fulltext-search](https://www.npmjs.com/package/vuepress-plugin-fulltext-search) 
-- [vuepress-plugin-one-click-copy](https://www.npmjs.com/package/vuepress-plugin-one-click-copy) 
-- [vuepress-plugin-pangu](https://www.npmjs.com/package/vuepress-plugin-spacing) 
-- [vuepress-plugin-sitemap](https://www.npmjs.com/package/vuepress-plugin-sitemap) 
-- [vuepress-plugin-smplayer](https://www.npmjs.com/package/vuepress-plugin-smplayer) 
-- [vuepress-plugin-zooming](https://www.npmjs.com/package/vuepress-plugin-zooming) 
+- [vuepress-plugin-fulltext-search](https://www.npmjs.com/package/vuepress-plugin-fulltext-search)
+- [vuepress-plugin-one-click-copy](https://www.npmjs.com/package/vuepress-plugin-one-click-copy)
+- [vuepress-plugin-pangu](https://www.npmjs.com/package/vuepress-plugin-spacing)
+- [vuepress-plugin-sitemap](https://www.npmjs.com/package/vuepress-plugin-sitemap)
+- [vuepress-plugin-smplayer](https://www.npmjs.com/package/vuepress-plugin-smplayer)
+- [vuepress-plugin-zooming](https://www.npmjs.com/package/vuepress-plugin-zooming)
 - [vuepress-plugin-vssue-global](https://www.npmjs.com/package/vuepress-plugin-vssue-global)
 
 ### markdown-it
 
-- [markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs) 
-- [markdown-it-footnote](https://www.npmjs.com/package/markdown-it-footnote) 
-- [markdown-it-imsize](https://www.npmjs.com/package/markdown-it-imsize) 
-- [markdown-it-mathjax3](https://www.npmjs.com/package/markdown-it-mathjax3) 
-- [markdown-it-sub](https://www.npmjs.com/package/markdown-it-sub) 
-- [markdown-it-sup](https://www.npmjs.com/package/markdown-it-sup) 
-- [markdown-it-task-lists](https://www.npmjs.com/package/markdown-it-task-lists) 
-- [markdown-it-abbr](https://www.npmjs.com/package/markdown-it-abbr) 
-- [markdown-it-ins](https://www.npmjs.com/package/markdown-it-ins) 
-- [markdown-it-multimd-table-ext](https://www.npmjs.com/package/markdown-it-multimd-table-ext) 
+- [markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs)
+- [markdown-it-footnote](https://www.npmjs.com/package/markdown-it-footnote)
+- [markdown-it-imsize](https://www.npmjs.com/package/markdown-it-imsize)
+- [markdown-it-mathjax3](https://www.npmjs.com/package/markdown-it-mathjax3)
+- [markdown-it-sub](https://www.npmjs.com/package/markdown-it-sub)
+- [markdown-it-sup](https://www.npmjs.com/package/markdown-it-sup)
+- [markdown-it-task-lists](https://www.npmjs.com/package/markdown-it-task-lists)
+- [markdown-it-abbr](https://www.npmjs.com/package/markdown-it-abbr)
+- [markdown-it-ins](https://www.npmjs.com/package/markdown-it-ins)
+- [markdown-it-multimd-table-ext](https://www.npmjs.com/package/markdown-it-multimd-table-ext)

@@ -8,6 +8,7 @@ export default hopeTheme({
   author: {
     name: "知识库",
     url: "https://haijunit.top",
+    email: 'zhanghaijun_java@163.com',
   },
   repo: "https://gitee.com/haijunit/blog-vuepress",
   repoDisplay: false,
@@ -58,5 +59,93 @@ export default hopeTheme({
     blog: {
       excerpt: false,
     },
+    copyCode: {
+      showInMobile: true,
+    },
+    feed: {
+      atom: true,
+      json: true,
+      rss: true,
+    },
+    mdEnhance: {
+      align: true,
+      attrs: true,
+      chart: true,
+      codetabs: true,
+      container: true,
+      demo: true,
+      echarts: true,
+      figure: true,
+      flowchart: false,
+      gfm: true,
+      imgLazyload: true,
+      imgSize: true,
+      include: true,
+      mark: true,
+      playground: {
+        presets: ['ts', 'vue'],
+      },
+      presentation: {
+        plugins: ['highlight', 'math', 'search', 'notes', 'zoom'],
+      },
+      stylize: [
+        {
+          matcher: 'Recommended',
+          replacer: ({ tag }) => {
+            if (tag === 'em')
+              return {
+                tag: 'Badge',
+                attrs: { type: 'tip' },
+                content: 'Recommended',
+              };
+          },
+        },
+      ],
+      sub: true,
+      sup: true,
+      tabs: true,
+      vPre: true,
+      vuePlayground: true,
+    },
+    // pwa: {
+    //   favicon: '/favicon.png',
+    //   cacheHTML: true,
+    //   cachePic: true,
+    //   appendBase: true,
+    //   apple: {
+    //     icon: '/pwa/144.png',
+    //     statusBarColor: 'black',
+    //   },
+    //   msTile: {
+    //     image: '/pwa/144.png',
+    //     color: '#000',
+    //   },
+    //   manifest: {
+    //     icons: [
+    //       {
+    //         src: '/pwa/512.png',
+    //         sizes: '512x512',
+    //         purpose: 'maskable',
+    //         type: 'image/png',
+    //       },
+    //       {
+    //         src: '/pwa/192.png',
+    //         sizes: '192x192',
+    //         purpose: 'maskable',
+    //         type: 'image/png',
+    //       },
+    //       {
+    //         src: '/pwa/512.png',
+    //         sizes: '512x512',
+    //         type: 'image/png',
+    //       },
+    //       {
+    //         src: '/pwa/192.png',
+    //         sizes: '192x192',
+    //         type: 'image/png',
+    //       },
+    //     ],
+    //   },
+    // },
   },
 });
