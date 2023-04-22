@@ -12,18 +12,18 @@ collation-server=utf8_unicode_ci
 skip-character-set-client-handshake
 skip-name-resolve
 
-server_id=2
+server_id=1
 log-bin=mysql-bin
 #是否只读  0=false   1=true
-read-only=1
+read-only=0
 
-#需要同步的表数据
+#需要同步的数据库
+binlog-do-db=db_cloud_system
 binlog-do-db=db_cloud_nacos
 binlog-do-db=db_cloud_job
-binlog-do-db=db_cloud_system
 binlog-do-db=db_cloud_seata
 
-#排除同步的表数据
+#排除同步的数据库
 replicate-ignore-db=mysql
 replicate-ignore-db=sys
 replicate-ignore-db=performance_schema
