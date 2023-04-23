@@ -1,4 +1,5 @@
 #!/bin/bash
+## 安装性能分析工具及其他
 ## 设置时区并同步时间
 ## 禁用selinux
 ## 清空防火墙默认策略
@@ -8,7 +9,9 @@
 ## 设置最大打开文件数
 ## 减少swap使用
 ## 系统内核参数优化
-## 安装性能分析工具及其他
+
+# 安装系统性能分析工具及其他
+yum -y install gcc make autoconf vim sysstat net-tools iostat iftop iotp wget lrzsz lsof unzip openssh-clients net-tool vim ntpdate
 
 ## 设置时区并同步时间 cn.pool.ntp.org/time.windows.com
 ##  cat /usr/share/zoneinfo/Asia/Shanghai >/etc/localtime
@@ -95,6 +98,3 @@ EOF
 sysctl -p /etc/sysctl.conf
 ## 减少swap使用
 echo "0" > /proc/sys/vm/swappiness
-
-## 安装系统性能分析工具及其他
-yum -y install gcc make autoconf vim sysstat net-tools iostat iftop iotp lrzsz
