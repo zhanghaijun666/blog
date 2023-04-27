@@ -1,0 +1,21 @@
+version: '3'
+services:
+  txcx-web:
+    image: nginx:1.23.2-alpine
+    container_name: nginx
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./conf/443.conf:/etc/nginx/conf.d/default.conf
+      - ./html:/usr/share/nginx/html
+      - ./cert:/etc/nginx/cert
+      - ./mp:/etc/nginx/mp
+    command:
+      - /bin/sh
+      - -c
+      - "mkdir -p /etc/nginx/{cert,mp} && exec nginx -g 'daemon off;'"
