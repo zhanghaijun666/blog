@@ -60,6 +60,12 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Build'
+        sh '''
+            git show --stat --format=提交日期：%ci,%n提交人：%cn,%n提交备注：%s,%n提交Hash：%H,%n提交分支：%d,%n%b%n提交修改的文件：
+        '''
+        sh '''
+            git rev-parse --short HEAD
+        '''
       }
     }
     stage('Stage For Build'){
