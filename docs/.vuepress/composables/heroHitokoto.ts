@@ -7,7 +7,7 @@ export const setupHeroHitokoto = () => {
 
   let timer: any;
 
-  const getTemplate = (text): string => `
+  const getTemplate = (text: string): string => `
 <div class="word">
   <div class="left">『</div>
     <span id="hitokoto_text"></span>
@@ -16,7 +16,7 @@ export const setupHeroHitokoto = () => {
 <div class="author" id="hitokoto_author"> ——「${text}」</div>
 `;
 
-  const insertText = (data) => {
+  const insertText = (data: any) => {
     clearInterval(timer);
 
     const descriptionElement = document.getElementsByClassName('description');

@@ -47,7 +47,7 @@ const InsertMenu = () => {
   };
 };
 
-const NewPlayer = (APlayer) => {
+const NewPlayer = (APlayer: any) => {
   if (!APlayer) {
     return;
   }

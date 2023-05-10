@@ -47,7 +47,6 @@ const updateBingImg = () => {
   document.getElementById("bingLink")?.setAttribute("href", NowData.CopyrightLink);
 
   const bgUrl = NowData.Path;
-  // const bgUrl = `//file.mo7.cc/api/public/bz?idx=${nowBingImgIndex + 1}`;
 
   // 填充背景
   maskElm.style.background = "";
@@ -60,7 +59,7 @@ const updateBingImg = () => {
 };
 
 // 更换背景图片
-const InsertBtn = (path?) => {
+const InsertBtn = (path?: string) => {
   const maskElm = document.querySelector(".mask");
   if (!maskElm) {
     return;
@@ -241,26 +240,6 @@ onMounted(() => {
   }
 }
 
-.blog-hero .slide-down-button {
-  bottom: 4.75rem;
-}
-
-.blog-hero.fullscreen .mask {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-y: top;
-  background-position-x: center;
-  background-attachment: fixed;
-}
-
-.blog-hero.fullscreen {
-  z-index: 5;
-  height: 100vh !important;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 1rem;
-}
-
 .footer-wrapper {
   border-top: none;
   background-repeat: no-repeat;
@@ -268,31 +247,5 @@ onMounted(() => {
   background-position-y: top;
   background-position-x: center;
   background-attachment: fixed;
-}
-
-[data-theme="light"] {
-  .blog-hero .mask::after {
-    background: #000;
-    opacity: 0.3 !important;
-  }
-  .footer-wrapper {
-    &::before {
-      background: #000;
-      opacity: 0.3;
-    }
-  }
-}
-
-[data-theme="dark"] {
-  .blog-hero .mask::after {
-    background: #000;
-    opacity: 0.7 !important;
-  }
-  .footer-wrapper {
-    &::before {
-      background: #000;
-      opacity: 0.7;
-    }
-  }
 }
 </style>

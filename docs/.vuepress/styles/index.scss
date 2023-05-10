@@ -1,9 +1,9 @@
 @use "blog";
-@use "comment";
 @use "hitokoto";
 @use "hr";
 @use "navbar";
 @use "spin";
+@use "project";
 
 @font-face {
   font-family: "mo7_font";
@@ -27,23 +27,28 @@
   align-items: center;
   justify-content: center;
   color: #fff;
+
   img {
     width: 14px;
     margin-right: 4px;
   }
 }
+
 .footer-about {
   padding: 2px 3px;
   border-radius: 3px;
   position: relative;
   color: #fff;
+
   &:hover {
     background-color: rgba($color: #0c7bf4, $alpha: 0.8);
   }
 }
+
 .footer {
   display: flex;
 }
+
 // 首页边栏信息按钮的颜色
 .blog-info-list {
   .blog-type-wrapper {
@@ -52,16 +57,28 @@
     }
   }
 }
+
 .blog {
   .fullscreen {
     h1 {
       font-size: 3.8rem;
-      font-family: "mo7_font";
     }
   }
 }
+
 // markdown 排版布局
 .img-center {
   display: block;
   margin: 0 auto;
+}
+
+.feature-wrapper {
+  .feature-item {
+    background-color: #f0f0f0;
+  }
+}
+
+#main-content>div.theme-hope-content {
+  background: rgb(255 247 247 / 74%);
+  border-radius: 8px;
 }

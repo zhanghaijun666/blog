@@ -1,7 +1,7 @@
 import store from 'store';
 
 export const mStorage = store;
-export const loadImage = (url) => {
+export const loadImage = (url: string) => {
   const img = new Image();
   img.src = url;
   img.onload = () => { };

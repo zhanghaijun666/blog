@@ -43,8 +43,8 @@ export default hopeTheme({
     orange: "#fb9b5f",
   },
   blog: {
-    name: "研发中心",
-    // intro: "/intro.html",
+    name: "全栈工程师",
+    intro: "/10.随笔记录/10.生活/00.关于我.html",
     avatar: "/logo.png",
     roundAvatar: true,
     description: "汇聚点滴，凝聚成溪",

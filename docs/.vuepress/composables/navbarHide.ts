@@ -2,7 +2,7 @@ import { onMounted, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 
 export const setupNavbarHide = () => {
-  const CheckScrollTopClass = (path?) => {
+  const CheckScrollTopClass = (path?: string) => {
     let toPath = window.location.pathname;
     const scrollTop = document.documentElement.scrollTop;
     if (path) {
@@ -22,7 +22,7 @@ export const setupNavbarHide = () => {
 
   onMounted(() => {
     nextTick(() => {
-      window.removeEventListener('scroll', () => {});
+      window.removeEventListener('scroll', () => { });
       CheckScrollTopClass(); // 切换时顶栏修改
       window.addEventListener('scroll', () => {
         CheckScrollTopClass();

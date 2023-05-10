@@ -22,7 +22,7 @@ export default defineClientConfig({
   },
   setup() {
     setupBlogBg();
-    setupCommentButton();
+    // setupCommentButton();
     setupConsole();
     setupHeroHitokoto();
     setupNavbarHide();
@@ -30,7 +30,7 @@ export default defineClientConfig({
   },
   rootComponents: [
     NavMusic,
-    HeroBG,
+    // HeroBG,
     //...
   ],
 });

@@ -4,13 +4,13 @@
 
 更重要的是，笔记里的知识并不属于你，只有经过消化、应用，才会成为自己的知识。
 
-因此，我基于 VuePress 和 vuepress-theme-hope 建立了 LearnData，将所有笔记与文章重新整合，聚合到同一页面形成知识库，方便自己使用和分享。
+因此，我基于 `VuePress` 和 `vuepress-theme-hope` 建立了 `学习笔记`，将所有笔记与文章重新整合，聚合到同一页面形成知识库，方便自己使用和分享。
 
 博客项目采用 vuePress2.X 版本进行构建，以本地主题继承 vuepress2.X 默认主题方式进行开发。集成了部分插件，丰富首页功能。围绕 markdown 语法进行文档编写，记录日常工作中的文档资料，最终项目以 html 静态文件形式进行部署。
 
 🧱 笔记结构
 
-## 技术栈 📚
+## 📚 技术栈
 
 - [vuepress-theme-vdoing](https://xugaoyi.github.io/vuepress-theme-vdoing-doc/)
 - [vuepress 的流程图插件](https://flowchart.vuepress.ulivz.com/)
@@ -18,8 +18,9 @@
 - [Emojipedia](https://emojipedia.org/)
 - [emojiall](https://www.emojiall.com/zh-hans)
 - [APlayer](https://aplayer.js.org/)
+- 符号网站: <https://cn.piliapp.com/symbol/>
 
-## 收藏 🎉
+## 🎉 收藏
 
 - [Zhu Zhaohua](https://zhuzhaohua.com/)
 - [兿芝梅](https://arieltlm.github.io/my-blog/)
@@ -63,3 +64,9 @@
 - [markdown-it-abbr](https://www.npmjs.com/package/markdown-it-abbr)
 - [markdown-it-ins](https://www.npmjs.com/package/markdown-it-ins)
 - [markdown-it-multimd-table-ext](https://www.npmjs.com/package/markdown-it-multimd-table-ext)
+
+## API接口
+
+- 教书先生API: <https://api.oioweb.cn/>
+- UomgAPI: <https://api.uomg.com/> 稳定、快速、免费的 API 接口服务
+- 韩小韩API接口站: <https://api.vvhan.com/>
