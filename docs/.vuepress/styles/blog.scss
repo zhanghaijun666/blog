@@ -94,11 +94,15 @@
   top: 0;
   width: 100vw;
   height: 100vh;
+  background-repeat: no-repeat;
   /* 渐变背景 */
-  background: linear-gradient(125deg, #2c3e50, #27ae60, #2980b9, #e74c3c, #8e44ad);
-  // background: linear-gradient(to top left, #ffe29f, #ffa99f, #ff719a);
+  background: linear-gradient(125deg, #2c3e50, #27ae60, #2980b9, #c4827a, #8e44ad);
   /* 指定背景图像的大小 */
   background-size: 500%;
+  /* 执行动画：动画名 时长 线性的 无限次播放 */
+  animation: bgAnimation 15s linear infinite;
+  // background: linear-gradient(to top left, #ffe29f, #ffa99f, #ff719a);
+
   // background-color: #e493d0;
   // background-image: radial-gradient(closest-side, rgba(235, 105, 78, 1), rgba(235, 105, 78, 0)),
   //   radial-gradient(closest-side, rgba(243, 11, 164, 1), rgba(243, 11, 164, 0)),
@@ -108,9 +112,8 @@
 
   // background-size: 130vmax 130vmax, 80vmax 80vmax, 90vmax 90vmax, 110vmax 110vmax, 90vmax 90vmax;
   // background-position: -80vmax -80vmax, 60vmax -30vmax, 10vmax 10vmax, -30vmax -10vmax, 50vmax 50vmax;
-  // background-repeat: no-repeat;
-  /* 执行动画：动画名 时长 线性的 无限次播放 */
-  animation: bgAnimation 15s linear infinite;
+
+
   // animation: 6s move linear infinite;
 
   &::after {
