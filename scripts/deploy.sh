@@ -15,8 +15,8 @@ set -e
 cd ${ROOT_DIR}
 
 # 生成静态文件
-npm install
-npm run build
+pnpm install
+pnpm run build
 
 # 进入生成的文件夹
 cd dist
