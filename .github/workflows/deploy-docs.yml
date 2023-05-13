@@ -1,11 +1,12 @@
-
 name: 部署文档
 
 on:
   push:
     branches:
-      # 确保这是你正在使用的分支名称
-      - main
+      - docs
+
+env:
+  TZ: Asia/Shanghai
 
 jobs:
   deploy-gh-pages:
@@ -18,13 +19,11 @@ jobs:
           # 如果你文档需要 Git 子模块，取消注释下一行
           # submodules: true
 
-
       - name: 安装 pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 7
           run_install: true
-
 
       - name: 设置 Node.js
         uses: actions/setup-node@v3
@@ -34,7 +33,7 @@ jobs:
 
       - name: 安装依赖
         run: pnpm install --frozen-lockfile
-      
+
       # - name: 安装typescript
       #   run: pnpm install typescript
 
@@ -56,14 +55,13 @@ jobs:
         with:
           ref: gh-pages
 
+      # 下面secrets的静态变量对应的内容需要在github配置
       - name: Deploy to Aliyun Server
-        uses: easingthemes/ssh-deploy@v2.2.11
+        uses: easingthemes/ssh-deploy@v2.1.5
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-          ARGS: "-rlgoDzvc --delete"
+          ARGS: "-avz --delete"
           SOURCE: ${{ secrets.SOURCE }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.USER_NAME }}
           TARGET: ${{ secrets.TARGET }}
-          
-          
