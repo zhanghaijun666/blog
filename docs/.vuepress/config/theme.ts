@@ -57,7 +57,8 @@ export default hopeTheme({
 
   plugins: {
     blog: {
-      excerpt: false,
+      excerpt: true,
+      excerptLength: 300
     },
     copyCode: {
       showInMobile: true,
