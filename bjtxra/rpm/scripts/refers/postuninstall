@@ -1,0 +1,66 @@
+#!/bin/bash
+if [ "$CLOUDSERVER_DEBUG" == "DEBUG" ];then
+  set -x
+fi
+
+log(){
+  local level=$1
+  shift
+  local prefix=$1
+  shift
+  local msg=$@
+  local timestamp=$(date '+%Y-%m-%d %H:%M:%''S')
+  echo "[$timestamp][$level][$prefix]" $msg
+  local log_file=/var/log/cloudserver-${prefix}.log
+  echo "[$timestamp][$level][$prefix]" $msg >> $log_file
+}
+
+info(){
+  log "INFO" "POSTRM" $@
+}
+warn(){
+  log "WARN" "POSTRM" $@
+}
+error(){
+  log "ERROR" "POSTRM" $@
+  exit 300
+}
+
+uninstall_main(){
+  info "清除安装目录"
+  rm -rf /opt/cloudserver/app
+  rm -rf /opt/cloudserver/bin
+  rm -rf /opt/cloudserver/installer
+  rm -rf /opt/cloudserver/doc
+  rm -rf /opt/cloudserver/etc
+  rm -rf /opt/cloudserver/lib
+  rm -rf /opt/cloudserver/tmp
+  rm -rf /opt/cloudserver/var
+  info "卸载正常结束，请建议启动计算机！"
+}
+
+main()
+{
+  # RPM安装
+	case $1 in
+		0 )
+			shift
+			uninstall_main $@
+      exit 0
+			;;
+	esac
+
+  # DEB安装
+	case $1 in
+		remove )
+			shift
+			uninstall_main $@
+			;;
+	esac
+}
+
+info "-----------------------------------------------------------------------------------"
+info "卸载后参数:$@"
+main $@
+
+exit 0

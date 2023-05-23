@@ -1,0 +1,19 @@
+# CloudServer Database service file
+[Unit]
+Description=CloudServer Database Server
+After=network.target
+After=syslog.target
+Before=cloudserver.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+#User=mysql
+#Group=mysql
+ExecStart=/opt/cloudserver/mysql/bin/mysqld_safe  --defaults-file=/opt/cloudserver/etc/mysql/my.cnf
+
+TimeoutSec=600
+Restart=on-failure
+LimitNOFILE=5000

@@ -1,0 +1,17 @@
+[Unit]
+Description=CloudServer Solr Index Service
+After=syslog.target network.target remote-fs.target nss-lookup.target
+Before=cloudserver.service
+
+[Service]
+PIDFile=/opt/cloudserver/app/solr/bin/solr-8985.pid
+ExecStart=/bin/bash -c 'source /opt/cloudserver/bin/cloudserver-envs; /opt/cloudserver/app/solr/bin/solr start -force'
+#User=solr
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+LimitNOFILE=65000
+LimitNPROC=65000
+
+[Install]
+WantedBy=multi-user.target

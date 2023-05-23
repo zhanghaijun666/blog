@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    stages {
+        stage('build image') {
+            agent {
+                docker {
+                    image 'build/storage-server-rpm:4.0.3'
+                    args "--privileged=true --name build-server-rpm-${BUILD_NUMBER} -v /var/run/docker.sock:/var/run/docker.sock"
+                }
+            }
+            steps{
+                sh 'bash build.sh'
+            }
+        }
+        // stage('test rpm') {
+        //     when {
+        //         expression {BUILD_PACKAGES == 'rpm'}
+        //     }
+        //     steps{
+        //         build job: '66.自动测试/auto-test', parameters: [
+        //             [$class: "StringParameterValue", name: "TEST_FAVOR", value: "${FAVOR}"],
+        //             [$class: "StringParameterValue", name: "TEST_ARCH", value: "${BUILD_ARCHES}"]
+        //         ]
+        //     }
+        // }
+    }
+}

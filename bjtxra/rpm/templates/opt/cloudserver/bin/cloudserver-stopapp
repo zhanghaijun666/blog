@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+APP_ROOT=/opt/cloudserver
+. $APP_ROOT/bin/cloudserver-envs
+#cloud and solr
+CLOUD_ROOT=$APP_ROOT/app
+$CLOUD_ROOT/bin/stop.sh

@@ -1,0 +1,19 @@
+[Unit]
+Description=CloudServer key-value store
+After=network.target
+Before=cloudserver.service
+
+[Service]
+Type=simple
+ExecStart=/opt/cloudserver/redis/bin/redis-server /opt/cloudserver/etc/redis/redis.conf
+TimeoutStopSec=0
+Restart=always
+#User=redis
+#Group=redis
+
+UMask=007
+PrivateTmp=yes
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

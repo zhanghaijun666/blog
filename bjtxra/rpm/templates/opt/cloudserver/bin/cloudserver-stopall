@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+systemctl stop cloudserver cloudserver-redis cloudserver-mysql cloudserver-nginx  cloudserver-office cloudserver-solr

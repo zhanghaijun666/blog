@@ -1,0 +1,86 @@
+#!/bin/bash
+if [ "$CLOUDSERVER_DEBUG" == "DEBUG" ];then
+  set -x
+fi
+
+log(){
+  local level=$1
+  shift
+  local prefix=$1
+  shift
+  local msg=$@
+  local timestamp=$(date '+%Y-%m-%d %H:%M:%''S')
+  echo "[$timestamp][$level][$prefix]" $msg
+  local log_file=/var/log/cloudserver-${prefix}.log
+  echo "[$timestamp][$level][$prefix]" $msg >> $log_file
+}
+
+info(){
+  log "INFO" "PRERM" $@
+}
+warn(){
+  log "WARN" "PRERM" $@
+}
+error(){
+  log "ERROR" "PRERM" $@
+  exit 200
+}
+
+uninstall_init(){
+  local common_install_file=/opt/cloudserver/installer/commonInstall
+  if [ -f $common_install_file ];then
+    . $common_install_file
+  else
+    echo "功能库文件[$common_install_file]不存在"
+    exit 0
+  fi
+}
+
+uninstall_command(){
+  info "卸载工具快捷方式"
+  rm -f /usr/bin/cloudserver-startapp
+  rm -f /usr/bin/cloudserver-stopapp
+}
+
+uninstall_check_process(){
+  info "停止产品相关进程"
+  /opt/cloudserver/bin/cloudserver-stopapp > /dev/null 2>&1
+}
+
+uninstall_main(){
+  uninstall_check_process
+  uninstall_service
+  uninstall_command
+}
+
+main()
+{
+  # RPM安装
+	case $1 in
+		0 )
+			shift
+      uninstall_init
+      uninstall_main $@
+      exit 0
+			;;
+	esac
+
+  # DEB安装
+	case $1 in
+		remove )
+			shift
+      uninstall_init
+      uninstall_main $@
+			;;
+		upgrade )
+			shift
+      uninstall_init
+      uninstall_main $@
+			;;
+	esac
+}
+
+info "-----------------------------------------------------------------------------------"
+info "卸载前参数:$@"
+main $@
+exit 0

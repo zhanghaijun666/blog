@@ -1,0 +1,24 @@
+#CloudServer
+#/usr/lib/systemd/system/cloudserver.service
+#systemctl daemon-reload
+[Unit]
+Description=CloudServer
+After=syslog.target network.target remote-fs.target nss-lookup.target systemd-journald-dev-log.socket
+After=cloudserver-redis.service
+After=cloudserver-mysql.service
+After=cloudserver-nginx.service
+After=cloudserver-solr.service
+Before=multi-user.target graphical.target
+Conflicts=shutdown.target
+
+[Service]
+#User=root
+ExecStart=/bin/bash -c 'source /opt/cloudserver/bin/cloudserver-envs; /opt/cloudserver/app/cloud/bin/run.sh'
+ExecReload=/bin/sh -c "kill -HUP $(pgrep -P $(pgrep -P $MAINPID))"
+Restart=always
+RestartSec=5sec
+TimeoutStartSec=2min
+LimitNOFILE=65000
+
+[Install]
+WantedBy=multi-user.target graphical.target

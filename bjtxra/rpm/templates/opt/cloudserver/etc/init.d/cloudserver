@@ -1,0 +1,79 @@
+#!/bin/bash
+### BEGIN INIT INFO
+#
+# Provides:  cloudserver
+# Required-Start:   $local_fs  $remote_fs
+# Required-Stop:    $local_fs  $remote_fs
+# Default-Start:    2 3 4 5
+# Default-Stop:     0 1 6
+# Short-Description:    cloudserver
+# Description:  This file should be used to construct scripts to be placed in /etc/init.d.
+#
+### END INIT INFO
+
+## Fill in name of program here.
+DAEMON_NAME=cloudserver
+DAEMON_PATH=/opt/cloudserver
+DAEMON_START=$DAEMON_PATH/bin/cloudserver-startapp
+DAEMON_STOP=$DAEMON_PATH/bin/cloudserver-stopapp
+DAEMON_LOG=$DAEMON_PATH/log/service.log
+DAEMON_OPTS=
+LOG_MODE=0
+
+export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
+
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+
+log_success_msg() { echo $@; }
+log_failure_msg() { echo $@; }
+log_warning_msg() { echo $@; }
+log_daemon_msg() { echo $@; }
+log_progress_msg() { echo $@; }
+log_action_msg() { echo $@; }
+log_begin_msg() { echo $@; }
+log_end_msg() { echo $@; }
+
+start(){
+    log_begin_msg "Starting cloudserver Service"
+
+    $DAEMON_START $DAEMON_OPTS > $DAEMON_LOG 2>&1 &
+
+    SYSTEMD_MODE=0
+    if command_exists "systemctl" ; then
+        SYSTEMD_MODE=1
+    fi
+
+    if [ $SYSTEMD_MODE -eq 1 ];then
+        systemd-notify --ready --status="cloudserver is ready now!"
+    else
+        log_success_msg "cloudserver is ready now!"
+    fi
+}
+
+stop(){
+    $DAEMON_STOP
+}
+
+case "$1" in
+  start)
+    echo "Starting service: $DAEMON_NAME"
+    start
+    ;;
+  stop)
+    echo "Stopping service: $DAEMON_NAME"
+    stop
+    ;;
+  restart)
+    echo "Restarting service: $DAEMON_NAME"
+    stop
+    start
+    ;;
+
+  *)
+    echo "Usage: "$1" {start|stop|restart}"
+    exit 1
+esac
+
+exit 0

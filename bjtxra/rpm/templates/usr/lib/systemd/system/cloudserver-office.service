@@ -1,0 +1,18 @@
+[Unit]
+Description=CloudServer Online Editor
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/loolwsd
+ExecStartPre=/usr/bin/loolwsd-systemplate-setup /opt/lool/systemplate /opt/libreoffice
+ExecStart=/bin/bash -c '/usr/bin/loolwsd --version --o:sys_template_path=/opt/lool/systemplate --o:lo_template_path=/opt/libreoffice --o:child_root_path=/opt/lool/child-roots --o:file_server_root_path=/usr/share/loolwsd $((test $(lsb_release -c -s 2>/dev/null||grep VERSION_CODENAME /etc/os-release|cut -f2 -d=) = xenial||grep -sq "docker\|lxc" /proc/1/cgroup >/dev/null 2>/dev/null) && echo "-o:security.capabilities=false")'
+#not use chroot
+#ExecStart=/usr/bin/loolwsd --version --o:sys_template_path=/opt/lool/systemplate --o:lo_template_path=/opt/libreoffice --o:child_root_path=/opt/lool/child-roots --o:file_server_root_path=/usr/share/loolwsd -o:security.capabilities=false
+User=lool
+Restart=always
+RestartSec=5min
+TimeoutStartSec=5min
+LimitNOFILE=65000
+
+[Install]
+WantedBy=multi-user.target

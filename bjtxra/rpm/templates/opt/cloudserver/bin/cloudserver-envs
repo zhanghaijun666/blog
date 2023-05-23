@@ -1,0 +1,8 @@
+#!/bin/bash
+#source me add path to current shell or execute me to get a new shell
+APP_ROOT=/opt/cloudserver
+export PATH=$PATH:$APP_ROOT/utils/bin:$APP_ROOT/java/bin:$APP_ROOT/mysql/bin:$APP_ROOT/redis/bin:$APP_ROOT/openresty/bin:$APP_ROOT/openresty/nginx/sbin
+export JAVA_TOOL_OPTIONS="-Djava.library.path=$APP_ROOT/lib -Dorg.hyperic.sigar.path=$APP_ROOT/lib"
+export SOLR_HOST=127.0.0.1
+
+[[ $0 != "$BASH_SOURCE" ]] || (echo "This is a new shell with cloudserver path" && PS1="[\u@\h \W]>" bash)

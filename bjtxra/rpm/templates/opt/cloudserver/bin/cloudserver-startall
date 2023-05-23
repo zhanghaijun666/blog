@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+systemctl start cloudserver-redis cloudserver-solr cloudserver-mysql cloudserver-nginx cloudserver-office cloudserver
