@@ -38,9 +38,9 @@ PACKAGE_NAME=${PACKAGE_NAME:-"cloudserver"}
 PACKAGE_DESC=${PACKAGE_DESC:-"$COMPANY_NAME $PACKAGE_NAME"}
 PACKAGE_URL=${PACKAGE_URL:="https://pan.bjtxra.com"}
 
-BUILD_OFFICE=${BUILD_OFFICE:-"false"}     #是否编译office安装包  
-OFFICE_PACKAGES=${OFFICE_PACKAGES:=""}    #编译的安装包，可以是"rpm deb dir"或者(fpm)[https://github.com/jordansissel/fpm] 支持的其他安装包,dir会打包为7z  
-RELEASE_OFFICE=${RELEASE_OFFICE:-"false"} #是否上传rpm,deb,7z安装包  
+BUILD_OFFICE=${BUILD_OFFICE:-"false"}     #是否编译office安装包
+OFFICE_PACKAGES=${OFFICE_PACKAGES:=""}    #编译的安装包，可以是"rpm deb dir"或者(fpm)[https://github.com/jordansissel/fpm] 支持的其他安装包,dir会打包为7z
+RELEASE_OFFICE=${RELEASE_OFFICE:-"false"} #是否上传rpm,deb,7z安装包
 
 RENAME_PACKAGE=${RENAME_PACKAGE:-"false"} #是否重命名包名，如果是则把默认的cloudserver以及所有引用都改为新包名
 user="root"
@@ -270,7 +270,7 @@ if [ -n "$BUILD_PACKAGES" -a ! "$BUILD_PACKAGE" = "false" ]; then
 			echo  $targetprefix/$targetfolder/
 			ls $BASEDIR/dist/packages/$arch/* |xargs -I {} curl -u $user:$pass --upload-file {}  $targetprefix/$targetfolder/
 			ls $BASEDIR/dist/packages/$arch/* |xargs -I {} curl -u $user:$pass --upload-file {}  $targetprefix/$backupfolder/
-		 
+
    		    rm -rf $BASEDIR/dist/packages/$arch/*
 			rm -rf $BASEDIR/build/*
 			#if [ -n "$TARGET_FAVOR" -o -n "$BUILD_BRANCH" ]; then  触发自动化测试
