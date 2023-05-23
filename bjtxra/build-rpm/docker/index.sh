@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+basedir=$(dirname $0)
+
 VERSION=$(date "+%Y%m%d%H%M%S")
 NAME="centos-fpm"
 
