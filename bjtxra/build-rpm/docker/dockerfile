@@ -1,0 +1,16 @@
+FROM centos:7
+LABEL maintainer zhanghaijun <zhanghaijun@bjtxra.com>
+
+RUN yum install wget -y \
+  && rm -rf /etc/yum.repos.d/CentOS-Base.repo \
+  && wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo \
+  && wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo \
+  && yum install epel-release rubygems ruby-devel rubugems-devel gcc rpm-build make -y \
+  && yum clean all \
+  && rm -rf /var/cache/yum/*
+
+RUN gem sources --add http://mirrors.aliyun.com/rubygems/ --remove https://rubygems.org/ \
+  ## rubygems-update requires Ruby version >= 2.6.0.
+  # && gem update --system \
+  && gem install --no-ri --no-rdoc fpm \
+  && gem cleanup

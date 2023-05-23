@@ -9,6 +9,7 @@ yum clean all && yum makecache && yum repolist && yum update
 
 yes | yum install git -y
 yum install -y initscripts curl
+yum clean all && rm -rf /var/cache/yum/*
 
 ###### 环境变量 jdk11 maven3.8 node16 ######
 ## 创建部署目录
