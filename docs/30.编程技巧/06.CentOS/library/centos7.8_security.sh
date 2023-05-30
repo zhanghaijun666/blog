@@ -100,7 +100,7 @@ function rhel_sec_account_locking_policy {
     local cfgfile_auth=/etc/pam.d/system-auth-ac
     #local cfgfile_account=/etc/pam.d/common-account
     local cfgfile_sshd=/etc/pam.d/sshd
-		
+
     prt_msg $Mandatory "Checking account locking policy..."
     egrep -v '#' $cfgfile_auth | egrep -q 'pam_tally2.so'
     if [ $? -eq 0 ];then
@@ -112,7 +112,7 @@ function rhel_sec_account_locking_policy {
         $backup_cfgfile $cfgfile_account
 		insert $cfgfile_auth  auth   "auth        required      pam_tally2.so deny=5 unlock_time=600 "
     fi
-	
+
 	egrep -v '#' $cfgfile_sshd | egrep  'pam_tally2.so'|egrep  -q 'auth'
     if [ $? -eq 0 ];then
         printf "OK!\n"
@@ -122,7 +122,7 @@ function rhel_sec_account_locking_policy {
 	    backup_cfgfile $cfgfile_sshd
 	    insert $cfgfile_sshd  auth   "auth       required     pam_tally2.so deny=5 unlock_time=600"
 	fi
-	
+
 	egrep -v '#' $cfgfile_sshd | egrep  'pam_tally2.so'|egrep -q 'account'
     if [ $? -eq 0 ];then
         printf "OK!\n"
@@ -257,7 +257,7 @@ function rhel_sec_ssh_policy {
     rm -f $cfgfile.tmp
     svc_ctl restart sshd
 }
- 
+
 #���õ�¼��ʱ����
 function rhel_sec_login_timeout {
     local cfgfile=/etc/profile
@@ -274,13 +274,9 @@ function rhel_sec_login_timeout {
         printf "Done\n"
     fi
 }
-  
-rhel_sec_disable_selinux 
+
+rhel_sec_disable_selinux
 rhel_sec_disable_ssh_rootlogin
 rhel_sec_account_locking_policy
 rhel_sec_passwd_complexity
 rhel_sec_login_timeout
-
- 
- 
-
