@@ -15,12 +15,12 @@ git clean -f -d .
 git stash && git stash clear
 ## git多模块源码拉取
 # git submodule init && git submodule update -f --remote
-git fetch --all
-git fetch --tags
+## 需要认证 git fetch --all
+## 需要认证 git fetch --tags
 
-echo "COMMIT_BRANCH: `git branch --show-current`"
 echo "COMMIT_BRANCH: `git symbolic-ref --short -q HEAD`"
-echo "   COMMIT_TAG: `git describe --tags --exact-match HEAD`"
+# echo "COMMIT_BRANCH: `git branch --show-current`"
+# echo "   COMMIT_TAG: `git describe --tags --exact-match HEAD`"
 echo "  COMMIT_HASH: `git rev-parse HEAD`"
 mkdir -p $BUILD_DIR
 git log --pretty=oneline --abbrev-commit -20 > $BUILD_DIR/changelog.txt
