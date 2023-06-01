@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 ROOT_DIR=$(cd `dirname $0`/..; pwd)
@@ -9,6 +9,8 @@ trim() {
   str=$1
   echo "${str}" | grep -o "[^ ]\+\( \+[^ ]\+\)*"
 }
+
+git show --stat --format=提交日期：%ci,%n提交人：%cn,%n提交备注：%s,%n提交Hash：%H,%n提交分支：%d,%n%b%n提交修改的文件：
 
 ## 删除当前工作目录中未被跟踪的文件和目录。
 git clean -f -d .
@@ -30,9 +32,3 @@ echo "====== commit ====== end ======"
 
 export VERSION=$(grep \"version\" package.json |head -1| sed -n 's/.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/p')
 echo "VERSION: $VERSION"
-
-command -v npm >/dev/null 2>&1 || { echo >&2 "I require node.js v12.20.0+ but it's not installed.  Aborting."; sleep 5; exit 1; }
-npm config set registry http://registry.npm.taobao.org/
-npm cache clean --force
-## command -v yarn >/dev/null 2>&1 || { npm install -g yarn; yarn config set registry https://registry.npm.taobao.org; }
-## command -v pnpm >/dev/null 2>&1 || { npm install -g pnpm; pnpm --version; pnpm config set registry https://registry.npmmirror.com; }

@@ -1,102 +1,43 @@
 pipeline {
-  agent any
-  parameters {
-      gitParameter name: 'branch', 
-      type: 'PT_BRANCH',
-      branchFilter: 'origin/(.*)',
-      defaultValue: 'master',
-      selectedValue: 'DEFAULT',
-      sortMode: 'ASCENDING_SMART',
-      description: '选择需要构建的分支'
+  agent {
+    node {
+      label 'nodejs'
+    }
   }
-
   stages {
-      stage('服务信息')    {
-          steps {
-              sh 'echo 分支：$branch'
-              sh 'echo 构建服务类型：${JOB_NAME}-$type'
-          }
+    stage('拉取代码') {
+      agent none
+      steps {
+        git(url: 'http://192.168.10.3/bedrock/modules/blog-docs.git', credentialsId: 'devops', branch: 'master', changelog: true, poll: false)
+        sh '''
+          ls -al
+          sh scripts/env_git.sh
+        '''
       }
-
-      stage('拉取代码') {
-          steps {
-              checkout([$class: 'GitSCM', 
-              branches: [[name: '$branch']],
-              doGenerateSubmoduleConfigurations: false, 
-              extensions: [], 
-              submoduleCfg: [],
-              userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/go-zero-looklook.git']]])
-          }   
+    }
+    stage('项目编译') {
+      agent none
+      steps {
+        container('node:18-alpine') {
+          sh '''
+            ls
+            node -v && npm -v
+            sh scripts/env_node.sh
+            npm install --registry=https://registry.npm.taobao.org
+            npm run build
+            mkdir -p build && tar -czvf build/dist.tar.gz dist/
+            ls
+          '''
+        }
       }
+    }
 
-      stage('获取commit_id') {
-          steps {
-              echo '获取commit_id'
-              git credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/go-zero-looklook.git'
-              script {
-                  env.commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-              }
-          }
+    stage('编译镜像') {
+      agent none
+      steps {
+          sh 'ls'
+          sh 'docker -v'
       }
-
-      stage('拉取配置文件') {
-              steps {
-                  checkout([$class: 'GitSCM', 
-                  branches: [[name: '$branch']],
-                  doGenerateSubmoduleConfigurations: false, 
-                  extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'conf']], 
-                  submoduleCfg: [],
-                  userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/go-zero-looklook-pro-conf.git']]])
-              }   
-      }
-
-      stage('goctl版本检测') {
-          steps{
-              sh '/usr/local/bin/goctl -v'
-          }
-      }
-      
-      stage('Dockerfile Build') {
-          steps{
-                 sh 'yes | cp  -rf conf/${JOB_NAME}/${type}/${JOB_NAME}.yaml  app/${JOB_NAME}/cmd/${type}/etc'   //线上配置文件
-                 sh 'cd app/${JOB_NAME}/cmd/${type} && /usr/local/bin/goctl docker -go ${JOB_NAME}.go && ls -l'
-                 script{
-                     env.image = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}:${commit_id}').trim()
-                 }
-                 sh 'echo 镜像名称：${image} && cp app/${JOB_NAME}/cmd/${type}/Dockerfile ./  && ls -l && docker build  -t ${image} .'
-          }
-      }
-
-      stage('上传到镜像仓库') {
-          steps{
-          	  //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
-              sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}' 
-              sh 'docker tag  ${image} ${docker_repo}/go-zero-looklook/${image}'
-              sh 'docker push ${docker_repo}/go-zero-looklook/${image}'
-          }
-      }
-
-      stage('部署到k8s') {
-          steps{
-              script{
-                  env.deployYaml = sh(returnStdout: true, script: 'echo ${JOB_NAME}-${type}-deploy.yaml').trim()
-                  env.port=sh(returnStdout: true, script: '/root/port.sh ${JOB_NAME}-${type}').trim()
-              }
-
-              sh 'echo ${port}'
-
-              sh 'rm -f ${deployYaml}'
-              sh '/usr/local/bin/goctl kube deploy -secret docker-login -replicas 2 -nodePort 3${port} -requestCpu 200 -requestMem 50 -limitCpu 300 -limitMem 100 -name ${JOB_NAME}-${type} -namespace go-zero-looklook -image ${docker_repo}/${image} -o ${deployYaml} -port ${port} --home /root/template'
-              sh '/usr/local/bin/kubectl apply -f ${deployYaml}'
-          }
-      }
-
-       stage('Clean') {
-           steps{
-               sh 'docker rmi -f ${image}'
-               sh 'docker rmi -f ${docker_repo}/${image}'
-               cleanWs notFailBuild: true
-           }
-       }
+    }
   }
 }
