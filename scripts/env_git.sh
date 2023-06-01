@@ -9,7 +9,7 @@ trim() {
   str=$1
   echo "${str}" | grep -o "[^ ]\+\( \+[^ ]\+\)*"
 }
-
+git version
 git show --stat --format=提交日期：%ci,%n提交人：%cn,%n提交备注：%s,%n提交Hash：%H,%n提交分支：%d,%n%b%n提交修改的文件：
 
 ## 删除当前工作目录中未被跟踪的文件和目录。

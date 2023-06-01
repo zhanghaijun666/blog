@@ -38,8 +38,10 @@ pipeline {
 
     stage('编译镜像') {
       steps {
-        sh 'ls'
-        sh 'docker -v'
+        container('base') {
+          sh 'docker -v'
+          sh 'docker version'
+        }
       }
     }
   }
