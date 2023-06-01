@@ -9,7 +9,7 @@ command -v npm >/dev/null 2>&1 || { echo >&2 "I require node.js v12.20.0+ but it
 npm config set registry http://registry.npm.taobao.org/
 npm cache clean --force
 ## command -v yarn >/dev/null 2>&1 || { npm install -g yarn; yarn config set registry https://registry.npm.taobao.org; }
-command -v pnpm >/dev/null 2>&1 || { npm install -g pnpm; pnpm --version; pnpm config set registry https://registry.npmmirror.com; }
+## command -v pnpm >/dev/null 2>&1 || { npm install -g pnpm; pnpm --version; pnpm config set registry https://registry.npmmirror.com; }
 
 trim() {
   str=$1
@@ -23,7 +23,6 @@ git stash && git stash clear
 # git submodule init && git submodule update -f --remote
 git fetch --all
 git fetch --tags
-
 
 echo "COMMIT_BRANCH: `git branch --show-current`"
 echo "COMMIT_BRANCH: `git symbolic-ref --short -q HEAD`"
