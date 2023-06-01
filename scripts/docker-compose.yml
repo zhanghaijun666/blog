@@ -1,0 +1,8 @@
+version: "3"
+services:
+  blog-docs:
+    build: .
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 80:80
