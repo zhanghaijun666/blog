@@ -1,7 +1,11 @@
 pipeline {
   agent {
-    node {
-      label 'nodejs'
+    kubernetes {
+      inheritFrom 'nodejs base'
+      containerTemplate {
+        name 'nodejs'
+        image 'node:18.16.0-alpine'
+      }
     }
   }
   stages {
@@ -18,25 +22,24 @@ pipeline {
     stage('项目编译') {
       agent none
       steps {
-        container('node:18-alpine') {
+        container('nodejs') {
           sh '''
             ls
             node -v && npm -v
             sh scripts/env_node.sh
-            npm install --registry=https://registry.npm.taobao.org
-            npm run build
+            pnpm install && pnpm build
             mkdir -p build && tar -czvf build/dist.tar.gz dist/
             ls
           '''
         }
+        archiveArtifacts 'build/dist.tar.gz'
       }
     }
 
     stage('编译镜像') {
-      agent none
       steps {
-          sh 'ls'
-          sh 'docker -v'
+        sh 'ls'
+        sh 'docker -v'
       }
     }
   }
