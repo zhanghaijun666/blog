@@ -5,12 +5,6 @@ ROOT_DIR=$(cd `dirname $0`/..; pwd)
 cd $ROOT_DIR
 BUILD_DIR=$ROOT_DIR/build
 
-command -v npm >/dev/null 2>&1 || { echo >&2 "I require node.js v12.20.0+ but it's not installed.  Aborting."; sleep 5; exit 1; }
-npm config set registry http://registry.npm.taobao.org/
-npm cache clean --force
-## command -v yarn >/dev/null 2>&1 || { npm install -g yarn; yarn config set registry https://registry.npm.taobao.org; }
-## command -v pnpm >/dev/null 2>&1 || { npm install -g pnpm; pnpm --version; pnpm config set registry https://registry.npmmirror.com; }
-
 trim() {
   str=$1
   echo "${str}" | grep -o "[^ ]\+\( \+[^ ]\+\)*"
@@ -36,3 +30,9 @@ echo "====== commit ====== end ======"
 
 export VERSION=$(grep \"version\" package.json |head -1| sed -n 's/.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*/\1/p')
 echo "VERSION: $VERSION"
+
+command -v npm >/dev/null 2>&1 || { echo >&2 "I require node.js v12.20.0+ but it's not installed.  Aborting."; sleep 5; exit 1; }
+npm config set registry http://registry.npm.taobao.org/
+npm cache clean --force
+## command -v yarn >/dev/null 2>&1 || { npm install -g yarn; yarn config set registry https://registry.npm.taobao.org; }
+## command -v pnpm >/dev/null 2>&1 || { npm install -g pnpm; pnpm --version; pnpm config set registry https://registry.npmmirror.com; }
