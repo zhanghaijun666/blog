@@ -8,6 +8,11 @@ pipeline {
       }
     }
   }
+
+  environment {
+    DOCKER_REGISTRY="192.168.10.5"
+  }
+
   stages {
     stage('拉取代码') {
       agent none
@@ -19,6 +24,7 @@ pipeline {
         '''
       }
     }
+
     stage('项目编译') {
       agent none
       steps {
@@ -41,6 +47,11 @@ pipeline {
         container('base') {
           sh 'docker -v'
           sh 'docker version'
+          withCredentials([usernamePassword(credentialsId : 'devops' ,)]) {
+            sh 'echo"$DOCKER_PWD_VAR"| docker login $DOCKER_REGISTRY -u"$DOCKER_USER_VAR"--password-stdin'
+            sh 'docker tag blog-docs:latest $DOCKER_REGISTRY/$DOCKERHUB_NAMESPACE/blog-docs:SNAPSHOT-$BUILD_NUMBER'
+            sh 'docker push  $DOCKER_REGISTRY/$DOCKERHUB_NAMESPACE/blog-docs:SNAPSHOT-$BUILD_NUMBER'
+          }
         }
       }
     }
