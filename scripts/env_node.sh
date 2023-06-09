@@ -10,7 +10,7 @@ npm config set registry http://registry.npm.taobao.org/
 npm cache clean --force
 ## command -v yarn >/dev/null 2>&1 || { npm install -g yarn; yarn config set registry https://registry.npm.taobao.org; }
 command -v pnpm >/dev/null 2>&1 || { npm install -g pnpm; pnpm --version; pnpm config set registry https://registry.npmmirror.com; }
-
+## pnpm config set store-dir "D:\.pnpm-store"
 MEMORY_LIMIT=$(node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))')
 echo "node的内存限制: $MEMORY_LIMIT"
 if [ -n "$MEMORY_LIMIT" ]; then

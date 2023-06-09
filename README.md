@@ -70,3 +70,16 @@
 - 教书先生API: <https://api.oioweb.cn/>
 - UomgAPI: <https://api.uomg.com/> 稳定、快速、免费的 API 接口服务
 - 韩小韩API接口站: <https://api.vvhan.com/>
+
+## Helm
+
+```bash
+helm create docs-chart
+## 打包
+helm package docs-chart
+## 发布到仓库
+helm repo add devops https://docker.devops.kk/charts
+helm push blog-docs-0.2.0.tgz devops
+## helm安装应用
+helm install blog-docs devops/blog-docs
+```
