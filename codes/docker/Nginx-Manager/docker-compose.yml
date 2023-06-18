@@ -1,0 +1,22 @@
+version: "3"
+services:
+  netdata:
+    image: netdata/netdata
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      -/proc:/host/proc:ro \
+      -/sys:/host/sys:ro \
+      -/var/run/docker.sock:/var/run/docker.sock:ro \
+
+      docker run -d --name=netdata \
+  -p 19999:19999 \
+  -v /proc:/host/proc:ro \
+  -v /sys:/host/sys:ro \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  --cap-add SYS_PTRACE \
+  --security-opt apparmor=unconfined \
+  netdata/netdata
