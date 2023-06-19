@@ -1,0 +1,36 @@
+## matomo是一个开源的网站行为分析工具
+
+version: "3"
+
+services:
+  db:
+    image: mariadb
+    command: --max-allowed-packet=64MB
+    restart: always
+    volumes:
+      - /var/docker/matomo/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=matomo
+      - MYSQL_PASSWORD=matomo
+      - MYSQL_DATABASE=matomo
+      - MYSQL_USER=matomo
+
+  app:
+    image: matomo:fpm-alpine
+    restart: always
+    links:
+      - db
+    volumes:
+      # - ./config:/var/www/html/config:rw
+      # - ./logs:/var/www/html/logs
+      - /var/www/html:/var/www/html
+    environment:
+      - MATOMO_DATABASE_HOST=db
+      - PHP_MEMORY_LIMIT=2048M
+      - MATOMO_DATABASE_ADAPTER=mysql
+      - MATOMO_DATABASE_TABLES_PREFIX=matomo_
+      - MATOMO_DATABASE_USERNAME=matomo
+      - MATOMO_DATABASE_PASSWORD=matomo
+      - MATOMO_DATABASE_DBNAME=matomo
+    ports:
+      - 8919:9000
