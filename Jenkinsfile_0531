@@ -1,7 +1,7 @@
 pipeline {
   agent any
   parameters {
-      gitParameter name: 'branch', 
+      gitParameter name: 'branch',
       type: 'PT_BRANCH',
       branchFilter: 'origin/(.*)',
       defaultValue: 'master',
@@ -20,13 +20,13 @@ pipeline {
 
       stage('拉取代码') {
           steps {
-              checkout([$class: 'GitSCM', 
+              checkout([$class: 'GitSCM',
               branches: [[name: '$branch']],
-              doGenerateSubmoduleConfigurations: false, 
-              extensions: [], 
+              doGenerateSubmoduleConfigurations: false,
+              extensions: [],
               submoduleCfg: [],
               userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/go-zero-looklook.git']]])
-          }   
+          }
       }
 
       stage('获取commit_id') {
@@ -41,13 +41,13 @@ pipeline {
 
       stage('拉取配置文件') {
               steps {
-                  checkout([$class: 'GitSCM', 
+                  checkout([$class: 'GitSCM',
                   branches: [[name: '$branch']],
-                  doGenerateSubmoduleConfigurations: false, 
-                  extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'conf']], 
+                  doGenerateSubmoduleConfigurations: false,
+                  extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'conf']],
                   submoduleCfg: [],
                   userRemoteConfigs: [[credentialsId: 'gitlab-cert', url: 'ssh://git@192.168.1.180:2222/root/go-zero-looklook-pro-conf.git']]])
-              }   
+              }
       }
 
       stage('goctl版本检测') {
@@ -55,7 +55,7 @@ pipeline {
               sh '/usr/local/bin/goctl -v'
           }
       }
-      
+
       stage('Dockerfile Build') {
           steps{
                  sh 'yes | cp  -rf conf/${JOB_NAME}/${type}/${JOB_NAME}.yaml  app/${JOB_NAME}/cmd/${type}/etc'   //线上配置文件
@@ -70,7 +70,7 @@ pipeline {
       stage('上传到镜像仓库') {
           steps{
           	  //docker login 这里要注意，会把账号密码输出到jenkins页面，可以通过port.sh类似方式处理，官网文档有这里我就不详细写了
-              sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}' 
+              sh 'docker login --username=${docker_username} --password=${docker_pwd} http://${docker_repo}'
               sh 'docker tag  ${image} ${docker_repo}/go-zero-looklook/${image}'
               sh 'docker push ${docker_repo}/go-zero-looklook/${image}'
           }

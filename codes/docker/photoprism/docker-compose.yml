@@ -1,0 +1,74 @@
+version: '3.5'
+services:
+  photoprism:
+    image: photoprism/photoprism:latest
+    restart: unless-stopped
+    # Uncomment and edit the following line to set a specific user / group id:
+    # user: "1000:1000"
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    ports:
+      - 2342:2342
+    healthcheck:
+      test: "photoprism status"
+      interval: 60s
+      timeout: 15s
+      retries: 5
+    environment:
+      PHOTOPRISM_DEBUG: "false"                      # Run in debug mode (shows additional log messages)
+      PHOTOPRISM_PUBLIC: "false"                     # No authentication required (disables password protection)
+      PHOTOPRISM_READONLY: "false"                   # Don't modify originals directory (reduced functionality)
+      PHOTOPRISM_UPLOAD_NSFW: "true"                 # 是否允许上传有可能令人感到不适的照片
+      PHOTOPRISM_DETECT_NSFW: "false"                # 是否把令人感到不适的照片标记为“私有”
+      PHOTOPRISM_EXPERIMENTAL: "false"               # Enable experimental features
+      PHOTOPRISM_SITE_URL: "http://localhost:2342/"  # Canonical / public site URL
+      PHOTOPRISM_SITE_TITLE: "PhotoPrism"               # 此处可修改页面的标题，也就是你的相册系统叫什么名字
+      PHOTOPRISM_SITE_CAPTION: "Browse Your Life"       # 此处可修改系统主题
+      PHOTOPRISM_SITE_DESCRIPTION: ""                   # 此处可修改简介
+      PHOTOPRISM_SITE_AUTHOR: ""                        # 此处可修改所有人
+      PHOTOPRISM_HTTP_HOST: "0.0.0.0"
+      PHOTOPRISM_HTTP_PORT: 2342
+      PHOTOPRISM_SETTINGS_HIDDEN: "false"            # Users can not view or change settings
+      PHOTOPRISM_ADMIN_PASSWORD: "admin"        # 初始管理密码，此处可忽略，因为可以稍后可以在页面中修改。
+      PHOTOPRISM_DATABASE_DRIVER: "sqlite"           # 默认使用sqlite做为数据库系统，不过建议使用MariaDB用作数据库，性能会好很多。
+      # PHOTOPRISM_DATABASE_DRIVER: "mysql"          # 如果使用Mysql或是MariaDB用作数据库，去掉本行和下一行行首的那个#，并在上一行的行首加#
+      # PHOTOPRISM_DATABASE_DSN: "user:passwd@tcp(photoprism-db:3306)/photoprism?charset=utf8mb4,utf8&parseTime=true"
+      PHOTOPRISM_SIDECAR_JSON: "true"                # Automatically create JSON sidecar files using Exiftool
+      PHOTOPRISM_SIDECAR_YAML: "true"                # Automatically backup metadata to YAML sidecar files
+      PHOTOPRISM_THUMB_FILTER: "lanczos"             # Resample filter, best to worst: blackman, lanczos, cubic, linear
+      PHOTOPRISM_THUMB_UNCACHED: "false"             # Enable on-demand thumbnail rendering (high memory and cpu usage)
+      PHOTOPRISM_THUMB_SIZE: 2048                    # 缓存缩略图大小限制 (默认2048, 最小 720, 最大 7680，4K显示的话推荐4096，8K的话7680，数字越大占用用缓存空间也越大)
+      PHOTOPRISM_THUMB_SIZE_UNCACHED: 7680           # 实时缓存缩略图大小限制 (default 7680, min 720, max 7680)
+      PHOTOPRISM_JPEG_SIZE: 7680                     # 转换为JPEG文件的象素大小限制 (720-30000)
+      PHOTOPRISM_JPEG_QUALITY: 92                    # 转换JPEG文件的质量，设为95为高质量缓存
+      PHOTOPRISM_DARKTABLE_PRESETS: "false"          # Use darktable presets (disables concurrent raw to jpeg conversion)
+    volumes:
+      - "~/Pictures:/photoprism/originals"           # [local path]:[container path] 此处需要把NAS里的照片文件夹映射到容器里的/photoprism/originals文件夹里，修改冒号：之间的部分
+      # 多文件夹的情况可以映射到originals文件夹下的子文件夹中，比如：
+      # - "~/Family:/photoprism/originals/Family"    # [folder_1]:/photoprism/originals/[folder_1]
+      # - "~/Friends:/photoprism/originals/Friends"  # [folder_2]:/photoprism/originals/[folder_2]
+      - "~/PhotoPrism/Storage:/photoprism/storage"   # 设置文件，缓存文件，照片信息文件的保存位置
+      - "~/PhotoPrism/Import:/photoprism/import"     # 此处如果import文件夹里如果有照片会自动导入到original的图库里
+
+# 如果使用Mysql或是MariaDB的数据库，删除下面每行行首的#
+#
+#  photoprism-db:
+#    image: mariadb:10.5 # Alternatively mysql:8.0
+#    restart: unless-stopped
+#    command: mysqld --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=50
+#    volumes:
+#      - "/var/lib/mysql"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: photoprism
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: passwd
+#      MYSQL_DATABASE: photoprism
+
+# 如果想要PhotosPrism自动升级的话删除下面每行行首的#
+#
+#  watchtower:
+#    image: containrrr/watchtower
+#    restart: unless-stopped
+#    volumes:
+#      - "/var/run/docker.sock:/var/run/docker.sock"
