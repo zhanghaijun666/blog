@@ -1,11 +1,8 @@
 pipeline {
   agent {
-    kubernetes {
-      inheritFrom 'nodejs base'
-      containerTemplate {
-        name 'nodejs'
-        image 'node:18.16.0-alpine'
-      }
+    docker {
+      image 'node:18.16.0'
+      args '-v $HOME/.m2:/root/.m2 -v /etc/localtime:/etc/localtime -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -v /etc/docker:/etc/docker --privileged=true'
     }
   }
 
@@ -14,6 +11,13 @@ pipeline {
   }
 
   stages {
+    stage('环境检查'){
+      steps {
+        sh 'echo "node版本:`node -v`"'
+        sh 'echo "npm版本:`npm -v`"'
+        sh 'echo "git版本:`git -v`"'
+    }
+
     stage('拉取代码') {
       agent none
       steps {

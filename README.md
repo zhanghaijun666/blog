@@ -78,7 +78,7 @@ helm create docs-chart
 ## 打包
 helm package docs-chart
 ## 发布到仓库
-helm repo add devops https://docker.devops.kk/charts
+helm repo add devops https://docker.devops.kk/charts --username=admin --password=Harbor12345
 helm push blog-docs-0.2.0.tgz devops
 ## helm安装应用
 helm install blog-docs devops/blog-docs
