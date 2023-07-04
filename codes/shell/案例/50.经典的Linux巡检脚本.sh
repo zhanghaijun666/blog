@@ -15,7 +15,7 @@ PROGPATH=`echo $0 | sed -e 's,[\\/][^\\/][^\\/]*$,,'`
 [ -f $PROGPATH ] && PROGPATH="."
 LOGPATH="$PROGPATH/log"
 [ -e $LOGPATH ] || mkdir $LOGPATH
-RESULTFILE="$LOGPATH/HostDailyCheck-$IPADDR-`date +%Y%m%d`.txt"
+RESULTFILE="$LOGPATH/HostDailyCheck-$IPADDR-`date +%Y%m%d`.log"
 
 
 ## 定义报表的全局变量
