@@ -6,6 +6,10 @@ set -e
 ## Create Time: 2023/07/03
 ##======================================
 
+# 获取当前脚本所在的目录
+current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$current_dir"
+
 source ./_check.sh
 
 echo -e "\033[1;35m############ 系统信息 ###### `date "+%Y-%m-%d %H:%M:%S"`\033[0m"

@@ -21,7 +21,7 @@ format_file_size() {
 
 info_cpu() {
   log_print "CPU名称:" "$(sudo cat /proc/cpuinfo | grep "model name" | awk -F': ' '{print $2}' | uniq)"
-  log_print "CPU架构:" "$(lscpu | grep 'Architecture' | awk '{print $2}' | uniq)"
+  log_print "CPU架构:" "$(lscpu | grep -E 'Architecture|架构' | awk '{print $2}' | uniq)"
 	log_print "物理Cpu个数:" "$(sudo cat /proc/cpuinfo | grep "physical id" | uniq | wc -l)"
 	log_print "系统Cpu核数:" "$(sudo cat /proc/cpuinfo | grep "cpu cores" | uniq | awk '{print $4}')"
   local cpu_leisure=$(top -b -n 1 | grep Cpu | awk '{print $8}' | cut -f 1 -d "%")
@@ -56,7 +56,7 @@ info_disk() {
   printf "| %-24s | %-8s | %-8s | %-8s | %-8s |%-10s |\n" "文件系统" "总大小" "已使用" "空闲" "已用%" "挂载点"
   printf "+----------------------+--------+--------+--------+--------+--------+\n"
   # 使用df命令获取分区信息，并循环处理每个分区
-  df -lh | awk '$1 ~ /^\/dev/ { printf "| %-20s | %-6s | %-6s | %-6s | %-6s |%-7s |\n", $1, $2, $3, $4, $5, $6 }'
+  df -lh | awk '$1 ~ /^\/dev/ && $6 !~ /\/boot/ { printf "| %-20s | %-6s | %-6s | %-6s | %-6s |%-7s |\n", $1, $2, $3, $4, $5, $6 }'
   # 输出表格底部
   printf "+----------------------+--------+--------+--------+--------+--------+\n"
 }
