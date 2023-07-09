@@ -48,7 +48,6 @@
 
 // 全局的背景
 @keyframes move {
-
   0%,
   100% {
     background-size: 130vmax 130vmax, 80vmax 80vmax, 90vmax 90vmax, 110vmax 110vmax, 90vmax 90vmax;
@@ -96,11 +95,11 @@
   height: 100vh;
   background-repeat: no-repeat;
   /* 渐变背景 */
-  background: linear-gradient(125deg, #2c3e50, #27ae60, #2980b9, #c4827a, #8e44ad);
+  // background: linear-gradient(125deg, #2c3e50, #27ae60, #2980b9, #c4827a, #8e44ad);
   /* 指定背景图像的大小 */
-  background-size: 500%;
+  // background-size: 500%;
   /* 执行动画：动画名 时长 线性的 无限次播放 */
-  animation: bgAnimation 15s linear infinite;
+  // animation: bgAnimation 15s linear infinite;
   // background: linear-gradient(to top left, #ffe29f, #ffa99f, #ff719a);
 
   // background-color: #e493d0;
@@ -113,11 +112,10 @@
   // background-size: 130vmax 130vmax, 80vmax 80vmax, 90vmax 90vmax, 110vmax 110vmax, 90vmax 90vmax;
   // background-position: -80vmax -80vmax, 60vmax -30vmax, 10vmax 10vmax, -30vmax -10vmax, 50vmax 50vmax;
 
-
   // animation: 6s move linear infinite;
 
   &::after {
-    content: '';
+    content: "";
     position: fixed;
     z-index: 2;
     left: 0;
@@ -139,15 +137,15 @@
   z-index: 5;
 }
 
-#main-content.page {
-  min-height: 100vh;
-  backdrop-filter: saturate(150%) blur(0.75rem);
-  box-sizing: border-box;
-}
+// #main-content.page {
+//   min-height: 100vh;
+//   backdrop-filter: saturate(150%) blur(0.75rem);
+//   box-sizing: border-box;
+// }
 
-#main-content.page.not-found {
-  backdrop-filter: none;
-}
+// #main-content.page.not-found {
+//   backdrop-filter: none;
+// }
 
 .sidebar {
   z-index: 6;
@@ -173,7 +171,7 @@
   margin-bottom: 0;
 }
 
-.toggle-sidebar-wrapper+.sidebar {
+.toggle-sidebar-wrapper + .sidebar {
   background: transparent;
   backdrop-filter: none;
 }
@@ -186,7 +184,7 @@
   background: transparent;
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   .BlogBg {
     &::after {
       // background-color: rgba($color: #eee, $alpha: 0.7);
@@ -205,16 +203,16 @@
     background-color: rgba($color: #fff, $alpha: 1);
   }
 
-  #main-content.page {
-    background-color: rgba($color: #fff, $alpha: 0.85);
-  }
+  // #main-content.page {
+  //   background-color: rgba($color: #fff, $alpha: 0.85);
+  // }
 
-  #main-content.page.not-found {
-    background: transparent;
-  }
+  // #main-content.page.not-found {
+  //   background: transparent;
+  // }
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   .BlogBg {
     &::after {
       background-color: rgba(29, 32, 37, 0.7);
@@ -232,13 +230,13 @@
     background-color: rgba(29, 32, 37, 0.7);
   }
 
-  #main-content.page {
-    background-color: rgba(29, 32, 37, 0.85);
-  }
+  // #main-content.page {
+  //   background-color: rgba(29, 32, 37, 0.85);
+  // }
 
-  #main-content.page.not-found {
-    background: transparent;
-  }
+  // #main-content.page.not-found {
+  //   background: transparent;
+  // }
 }
 
 .pagination-wrapper .page-number div.active {
