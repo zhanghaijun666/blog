@@ -1,0 +1,22 @@
+version: '3'
+services:
+  yum-repo:
+    image: nginx:latest
+    container_name: yum-repo
+    ports:
+      - "8066:80"
+    restart: always
+    volumes:
+      - ./yum-repo:/usr/share/nginx/html
+
+####################################
+## 添加本地源
+# cat >> /etc/yum.repos.d/devops.repo <<EOF
+# [devops-rpms]
+# name=devops-rpms
+# baseurl=http://192.168.10.241:8066/`uname -m`
+# enabled=1
+# gpgcheck=0
+# skip_if_unavailable=1
+# EOF
+####################################
