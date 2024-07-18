@@ -1,0 +1,17 @@
+import{_ as r}from"./plugin-vue_export-helper-c27b6911.js";import{r as t,o as l,c,e as p,a,d as e,w as i,b as n,f as d}from"./app-efa5e96e.js";const u={},v={class:"table-of-contents"},m=a("h2",{id:"netdata",tabindex:"-1"},[a("a",{class:"header-anchor",href:"#netdata","aria-hidden":"true"},"#"),n(" netdata")],-1),b=a("p",null,"一个面向系统、硬件、容器和应用程序的分布式实时性能和运行状况监控平台，无需配置即可收集数千个有用的指标",-1),k={href:"https://www.netdata.cloud/",target:"_blank",rel:"noopener noreferrer"},_={href:"https://github.com/netdata/netdata",target:"_blank",rel:"noopener noreferrer"},h=d(`<div class="language-bash line-numbers-mode" data-ext="sh"><pre class="language-bash"><code><span class="token comment">## docker 部署</span>
+<span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">--name</span><span class="token operator">=</span>netdata <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-p</span> <span class="token number">19999</span>:19999 <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-v</span> netdataconfig:/etc/netdata <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-v</span> netdatalib:/var/lib/netdata <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-v</span> netdatacache:/var/cache/netdata <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-v</span> /etc/passwd:/host/etc/passwd:ro <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-v</span> /etc/group:/host/etc/group:ro <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-v</span> /proc:/host/proc:ro <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-v</span> /sys:/host/sys:ro <span class="token punctuation">\\</span>
+  <span class="token parameter variable">-v</span> /etc/os-release:/host/etc/os-release:ro <span class="token punctuation">\\</span>
+  <span class="token parameter variable">--restart</span> unless-stopped <span class="token punctuation">\\</span>
+  --cap-add SYS_PTRACE <span class="token punctuation">\\</span>
+  --security-opt <span class="token assign-left variable">apparmor</span><span class="token operator">=</span>unconfined <span class="token punctuation">\\</span>
+  netdata/netdata
+<span class="token comment">## 访问 http://localhost:19999</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,1);function f(g,w){const o=t("router-link"),s=t("ExternalLinkIcon");return l(),c("div",null,[p(" more "),a("nav",v,[a("ul",null,[a("li",null,[e(o,{to:"#netdata"},{default:i(()=>[n("netdata")]),_:1})])])]),m,a("blockquote",null,[b,a("p",null,[n("官网地址："),a("a",k,[n("https://www.netdata.cloud/"),e(s)])]),a("p",null,[n("GitHub地址："),a("a",_,[n("https://github.com/netdata/netdata"),e(s)])])]),h])}const V=r(u,[["render",f],["__file","21.监控工具.html.vue"]]);export{V as default};

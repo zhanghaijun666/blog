@@ -1,0 +1,1 @@
+import{g as e,o,c as s,T as a}from"./app-efa5e96e.js";import{_ as c}from"./plugin-vue_export-helper-c27b6911.js";const p=e({__name:"MyIcon",props:{name:{},spin:{type:Boolean}},setup(t){return(n,_)=>(o(),s("span",a({class:["iconfont icon",[`icon-${n.name}`]]},n.spin?{"data-spin":""}:{}),null,16))}});const l=c(p,[["__file","MyIcon.vue"]]);export{l as default};
